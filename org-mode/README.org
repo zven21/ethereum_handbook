@@ -3,8 +3,9 @@
 
 * Ethereum API
 ** DONE web3_clientVersion
+# [[https://infura.io/docs/ethereum#operation/web3_clientVersion][]]Returns the version of the current client.
 #+begin_src restclient
-POST https://bsc-dataseed.binance.org/
+POST https://data-seed-prebsc-1-s1.binance.org:8545/
 Content-Type: application/json
 {
     "id": "1337",
@@ -13,30 +14,6 @@ Content-Type: application/json
 }
 
 #+end_src
-
-#+RESULTS:
-#+BEGIN_SRC js
-{
-  "jsonrpc": "2.0",
-  "id": "1337",
-  "result": "Geth/v1.1.0-beta-032970b2/linux-amd64/go1.16.4"
-}
-// POST https://bsc-dataseed.binance.org/
-// HTTP/1.1 200 OK
-// Date: Tue, 13 Jul 2021 03:55:09 GMT
-// Content-Type: application/json
-// Content-Length: 87
-// Connection: close
-// Vary: Accept-Encoding
-// Vary: Origin
-// X-Proxy-Cache: true
-// X-Frame-Options: SAMEORIGIN
-// X-Xss-Protection: 1; mode=block
-// X-Content-Type-Options: nosniff
-// Referrer-Policy: origin-when-cross-origin
-// Strict-Transport-Security: max-age=31536000; includeSubdomains
-// Request duration: 0.610139s
-#+END_SRC
 
 ** DONE web3_sha3
 #+begin_src restclient
