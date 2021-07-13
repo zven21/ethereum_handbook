@@ -1,4 +1,4 @@
-# EthereumRpc
+# EthereumRPC
 
 **TODO: Add description**
 

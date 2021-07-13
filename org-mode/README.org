@@ -1,0 +1,390 @@
+#+title: Ethereum API
+#+author: Kaijie Wang
+
+
+
+* Ethereum API
+** web3_clientVersion
+#+begin_src restclient
+POST https://bsc-dataseed.binance.org/
+Content-Type: application/json
+{
+    "id": "1337",
+    "jsonrpc": "2.0",
+    "method": "web3_clientVersion"
+}
+
+#+end_src
+
+#+RESULTS:
+#+BEGIN_SRC js
+{
+  "jsonrpc": "2.0",
+  "id": "1337",
+  "result": "Geth/v1.1.0-beta-032970b2/linux-amd64/go1.16.4"
+}
+// POST https://bsc-dataseed.binance.org/
+// HTTP/1.1 200 OK
+// Date: Tue, 13 Jul 2021 03:36:38 GMT
+// Content-Type: application/json
+// Content-Length: 87
+// Connection: close
+// Vary: Accept-Encoding
+// Vary: Origin
+// X-Frame-Options: SAMEORIGIN
+// X-Xss-Protection: 1; mode=block
+// X-Content-Type-Options: nosniff
+// Referrer-Policy: origin-when-cross-origin
+// Strict-Transport-Security: max-age=31536000; includeSubdomains
+// Request duration: 1.324237s
+#+END_SRC
+
+** web3_sha3
+#+begin_src restclient
+POST https://bsc-dataseed.binance.org/
+Content-Type: application/json
+{
+    "id": "1337",
+    "jsonrpc": "2.0",
+    "method": "web3_sha3"
+}
+
+#+end_src
+
+#+RESULTS:
+#+BEGIN_SRC js
+{
+  "jsonrpc": "2.0",
+  "id": "1337",
+  "error": {
+    "code": -32602,
+    "message": "missing value for required argument 0"
+  }
+}
+
+// POST https://bsc-dataseed.binance.org/
+// HTTP/1.1 200 OK
+// Date: Tue, 13 Jul 2021 03:41:12 GMT
+// Content-Type: application/json
+// Content-Length: 104
+// Connection: close
+// Vary: Accept-Encoding
+// Vary: Origin
+// X-Frame-Options: SAMEORIGIN
+// X-Xss-Protection: 1; mode=block
+// X-Content-Type-Options: nosniff
+// Referrer-Policy: origin-when-cross-origin
+// Strict-Transport-Security: max-age=31536000; includeSubdomains
+// Request duration: 1.449943s
+#+END_SRC
+
+** net_version
+#+begin_src restclient
+POST https://bsc-dataseed.binance.org/
+Content-Type: application/json
+{
+    "id": "1337",
+    "jsonrpc": "2.0",
+    "method": "net_version"
+}
+
+#+end_src
+
+#+RESULTS:
+#+BEGIN_SRC js
+{
+  "jsonrpc": "2.0",
+  "id": "1337",
+  "result": "56"
+}
+// POST https://bsc-dataseed.binance.org/
+// HTTP/1.1 200 OK
+// Date: Tue, 13 Jul 2021 03:30:32 GMT
+// Content-Type: application/json
+// Content-Length: 43
+// Connection: close
+// Vary: Accept-Encoding
+// Vary: Origin
+// X-Frame-Options: SAMEORIGIN
+// X-Xss-Protection: 1; mode=block
+// X-Content-Type-Options: nosniff
+// Referrer-Policy: origin-when-cross-origin
+// Strict-Transport-Security: max-age=31536000; includeSubdomains
+// Request duration: 1.345768s
+#+END_SRC
+
+** net_peerCount
+#+begin_src restclient
+POST https://bsc-dataseed.binance.org/
+Content-Type: application/json
+{
+    "id": "1337",
+    "jsonrpc": "2.0",
+    "method": "net_peerCount"
+}
+#+end_src
+
+#+RESULTS:
+#+BEGIN_SRC js
+{
+  "jsonrpc": "2.0",
+  "id": "1337",
+  "result": "0x3"
+}
+
+// POST https://bsc-dataseed.binance.org/
+// HTTP/1.1 200 OK
+// Date: Tue, 13 Jul 2021 03:41:06 GMT
+// Content-Type: application/json
+// Content-Length: 45
+// Connection: close
+// Vary: Accept-Encoding
+// Vary: Origin
+// X-Frame-Options: SAMEORIGIN
+// X-Xss-Protection: 1; mode=block
+// X-Content-Type-Options: nosniff
+// Referrer-Policy: origin-when-cross-origin
+// Strict-Transport-Security: max-age=31536000; includeSubdomains
+// Request duration: 1.388685s
+#+END_SRC
+
+** net_listening
+#+begin_src restclient
+POST https://bsc-dataseed.binance.org/
+Content-Type: application/json
+{
+    "id": "1337",
+    "jsonrpc": "2.0",
+    "method": "net_listening"
+}
+#+end_src
+
+#+RESULTS:
+#+BEGIN_SRC js
+{
+  "jsonrpc": "2.0",
+  "id": "1337",
+  "result": true
+}
+
+// POST https://bsc-dataseed.binance.org/
+// HTTP/1.1 200 OK
+// Date: Tue, 13 Jul 2021 03:40:59 GMT
+// Content-Type: application/json
+// Content-Length: 44
+// Connection: close
+// Vary: Accept-Encoding
+// Vary: Origin
+// X-Frame-Options: SAMEORIGIN
+// X-Xss-Protection: 1; mode=block
+// X-Content-Type-Options: nosniff
+// Referrer-Policy: origin-when-cross-origin
+// Strict-Transport-Security: max-age=31536000; includeSubdomains
+// Request duration: 0.758425s
+#+END_SRC
+
+** eth_protocolVersion
+#+begin_src restclient
+POST https://bsc-dataseed.binance.org/
+Content-Type: application/json
+{
+    "id": "1337",
+    "jsonrpc": "2.0",
+    "method": "eth_protocolVersion"
+}
+#+end_src
+
+#+RESULTS:
+#+BEGIN_SRC js
+{
+  "jsonrpc": "2.0",
+  "id": "1337",
+  "error": {
+    "code": -32601,
+    "message": "the method eth_protocolVersion does not exist/is not available"
+  }
+}
+
+// POST https://bsc-dataseed.binance.org/
+// HTTP/1.1 200 OK
+// Date: Tue, 13 Jul 2021 03:40:50 GMT
+// Content-Type: application/json
+// Content-Length: 129
+// Connection: close
+// Vary: Accept-Encoding
+// Vary: Origin
+// X-Frame-Options: SAMEORIGIN
+// X-Xss-Protection: 1; mode=block
+// X-Content-Type-Options: nosniff
+// Referrer-Policy: origin-when-cross-origin
+// Strict-Transport-Security: max-age=31536000; includeSubdomains
+// Request duration: 1.280550s
+#+END_SRC
+
+** eth_syncing
+** eth_coinbase
+** eth_mining
+** eth_hashrate
+** eth_gasPrice
+#+begin_src restclient
+POST https://bsc-dataseed.binance.org/
+Content-Type: application/json
+{
+    "id": "1337",
+    "jsonrpc": "2.0",
+    "method": "eth_gasPrice"
+}
+
+
+
+
+#+end_src
+
+#+RESULTS:
+#+BEGIN_SRC js
+{
+  "jsonrpc": "2.0",
+  "id": "1337",
+  "result": "0x12a05f200"
+}
+
+// POST https://bsc-dataseed.binance.org/
+// HTTP/1.1 200 OK
+// Date: Tue, 13 Jul 2021 03:28:08 GMT
+// Content-Type: application/json
+// Content-Length: 53
+// Connection: close
+// Vary: Accept-Encoding
+// Vary: Origin
+// X-Frame-Options: SAMEORIGIN
+// X-Xss-Protection: 1; mode=block
+// X-Content-Type-Options: nosniff
+// Referrer-Policy: origin-when-cross-origin
+// Strict-Transport-Security: max-age=31536000; includeSubdomains
+// Request duration: 1.471388s
+#+END_SRC
+
+** eth_accounts
+#+begin_src restclient
+POST https://bsc-dataseed.binance.org/
+Content-Type: application/json
+{
+    "id": "1337",
+    "jsonrpc": "2.0",
+    "method": "eth_accounts"
+}
+
+#+end_src
+
+#+RESULTS:
+#+BEGIN_SRC js
+{
+  "jsonrpc": "2.0",
+  "id": "1337",
+  "result": []
+}
+
+// POST https://bsc-dataseed.binance.org/
+// HTTP/1.1 200 OK
+// Date: Tue, 13 Jul 2021 03:37:47 GMT
+// Content-Type: application/json
+// Content-Length: 42
+// Connection: close
+// Vary: Accept-Encoding
+// Vary: Origin
+// X-Frame-Options: SAMEORIGIN
+// X-Xss-Protection: 1; mode=block
+// X-Content-Type-Options: nosniff
+// Referrer-Policy: origin-when-cross-origin
+// Strict-Transport-Security: max-age=31536000; includeSubdomains
+// Request duration: 1.308438s
+#+END_SRC
+
+** eth_blockNumber
+#+begin_src restclient
+POST https://bsc-dataseed.binance.org/
+Content-Type: application/json
+{
+    "id": "1337",
+    "jsonrpc": "2.0",
+    "method": "eth_blockNumber"
+}
+
+
+#+end_src
+
+#+RESULTS:
+#+BEGIN_SRC js
+{
+  "jsonrpc": "2.0",
+  "id": "1337",
+  "result": "0x8b0167"
+}
+// POST https://bsc-dataseed.binance.org/
+// HTTP/1.1 200 OK
+// Date: Tue, 13 Jul 2021 03:37:12 GMT
+// Content-Type: application/json
+// Content-Length: 49
+// Connection: close
+// Vary: Accept-Encoding
+// Vary: Origin
+// X-Proxy-Cache: true
+// X-Frame-Options: SAMEORIGIN
+// X-Xss-Protection: 1; mode=block
+// X-Content-Type-Options: nosniff
+// Referrer-Policy: origin-when-cross-origin
+// Strict-Transport-Security: max-age=31536000; includeSubdomains
+// Request duration: 0.587777s
+#+END_SRC
+
+** eth_getBalance
+** eth_getStorageAt
+** eth_getTransactionCount
+** eth_getBlockTransactionCountByHash
+** eth_getBlockTransactionCountByNumber
+** eth_getUncleCountByBlockHash
+** eth_getUncleCountByBlockNumber
+** eth_getCode
+** eth_sign
+** eth_sendTransaction
+** eth_sendRawTransaction
+** eth_call
+** eth_estimateGas
+** eth_getBlockByHash
+** eth_getBlockByNumber
+** eth_getTransactionByHash
+** eth_getTransactionByBlockHashAndIndex
+** eth_getTransactionByBlockNumberAndIndex
+** eth_getTransactionReceipt
+** eth_getUncleByBlockHashAndIndex
+** eth_getUncleByBlockNumberAndIndex
+** eth_getCompilers
+** eth_compileLLL
+** eth_compileSolidity
+** eth_compileSerpent
+** eth_newFilter
+** eth_newBlockFilter
+** eth_newPendingTransactionFilter
+** eth_uninstallFilter
+** eth_getFilterChanges
+** eth_getFilterLogs
+** eth_getLogs
+** eth_getProof
+** eth_getWork
+** eth_submitWork
+** eth_submitHashrate
+** db_putString
+** db_getString
+** db_putHex
+** db_getHex
+** shh_post
+** shh_version
+** shh_newIdentity
+** shh_hasIdentity
+** shh_newGroup
+** shh_addToGroup
+** shh_newFilter
+** shh_uninstallFilter
+** shh_getFilterChanges
+** shh_getMessages
+** eth_newBlockFilter

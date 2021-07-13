@@ -1,6 +1,6 @@
-defmodule EthereumRpc do
+defmodule EthereumRPC do
   @moduledoc """
-  Documentation for `EthereumRpc`.
+  Documentation for `EthereumRPC`.
   """
 
   @doc """
@@ -8,7 +8,7 @@ defmodule EthereumRpc do
 
   ## Examples
 
-      iex> EthereumRpc.hello()
+      iex> EthereumRPC.hello()
       :world
 
   """

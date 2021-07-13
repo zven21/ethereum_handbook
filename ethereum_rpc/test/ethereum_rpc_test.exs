@@ -1,8 +1,8 @@
-defmodule EthereumRpcTest do
+defmodule EthereumRPCTest do
   use ExUnit.Case
-  doctest EthereumRpc
+  doctest EthereumRPC
 
   test "greets the world" do
-    assert EthereumRpc.hello() == :world
+    assert EthereumRPC.hello() == :world
   end
 end
