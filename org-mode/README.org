@@ -3,7 +3,7 @@
 
 * Ethereum API
 ** DONE web3_clientVersion
-# [[https://infura.io/docs/ethereum#operation/web3_clientVersion][]]Returns the version of the current client.
+[[https://infura.io/docs/ethereum#operation/web3_clientVersion][]]Returns the version of the current client.
 #+begin_src restclient
 POST https://data-seed-prebsc-1-s1.binance.org:8545/
 Content-Type: application/json
