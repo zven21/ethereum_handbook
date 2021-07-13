@@ -396,19 +396,19 @@ defmodule EthereumRPC.Client.BaseClient do
         request("eth_getProof", params, opts)
       end
 
-      # @impl true
-      # def eth_submit_work(nonce, header, digest, opts \\ []) do
-      #   params = [nonce, header, digest]
+      @impl true
+      def eth_submit_work(nonce, header, digest, opts \\ []) do
+        params = [nonce, header, digest]
 
-      #   request("eth_submitWork", params, opts)
-      # end
+        request("eth_submitWork", params, opts)
+      end
 
-      # @impl true
-      # def eth_submit_hashrate(hashrate, id, opts \\ []) do
-      #   params = [hashrate, id]
+      @impl true
+      def eth_submit_hashrate(hashrate, id, opts \\ []) do
+        params = [hashrate, id]
 
-      #   request("eth_submitHashrate", params, opts)
-      # end
+        request("eth_submitHashrate", params, opts)
+      end
 
       # @impl true
       # def db_put_string(db, key, value, opts \\ []) do

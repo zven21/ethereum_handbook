@@ -115,7 +115,7 @@ defmodule EthereumRPC.Client.BaseClientTest do
   end
 
   test ".eth_get_work/0", do: Helpers.check("eth_get_work")
-  test ".shh_version/0", do: Helpers.check("shh_version")
+  # test ".shh_version/0", do: Helpers.check("shh_version")
   # test ".shh_new_identity/0", do: Helpers.check("shh_new_identity")
   # test ".shh_new_group/0", do: Helpers.check("shh_new_group")
 
@@ -129,7 +129,7 @@ defmodule EthereumRPC.Client.BaseClientTest do
     test "with number", do: Helpers.check("eth_get_uncle_count_by_block_number", [@hex_232])
   end
 
-  # test ".web3_sha3/1", do: Helpers.check("web3_sha3", ["string to be hashed"])
+  test ".web3_sha3/1", do: Helpers.check("web3_sha3", ["string to be hashed"])
 
   test ".eth_get_balance/1",
     do: Helpers.check("eth_get_balance", [@address], ["latest"])
@@ -191,24 +191,24 @@ defmodule EthereumRPC.Client.BaseClientTest do
 
   test ".eth_get_logs/1", do: Helpers.check("eth_get_logs", [@filter])
 
-  # test ".eth_submit_work/3" do
-  #   params = [
-  #     "0x0000000000000001",
-  #     "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
-  #     "0xD1FE5700000000000000000000000000D1FE5700000000000000000000000000"
-  #   ]
+  test ".eth_submit_work/3" do
+    params = [
+      "0x0000000000000001",
+      "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
+      "0xD1FE5700000000000000000000000000D1FE5700000000000000000000000000"
+    ]
 
-  #   Helpers.check("eth_submit_work", params)
-  # end
+    Helpers.check("eth_submit_work", params)
+  end
 
-  # test ".eth_submit_hashrate/2" do
-  #   params = [
-  #     "0x0000000000000000000000000000000000000000000000000000000000500000",
-  #     "0x59daa26581d0acd1fce254fb7e85952f4c09d0915afd33d3886cd914bc7d283c"
-  #   ]
+  test ".eth_submit_hashrate/2" do
+    params = [
+      "0x0000000000000000000000000000000000000000000000000000000000500000",
+      "0x59daa26581d0acd1fce254fb7e85952f4c09d0915afd33d3886cd914bc7d283c"
+    ]
 
-  #   Helpers.check("eth_submit_hashrate", params)
-  # end
+    Helpers.check("eth_submit_hashrate", params)
+  end
 
   # test ".db_put_string/3" do
   #   params = [
