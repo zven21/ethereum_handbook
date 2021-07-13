@@ -29,8 +29,7 @@ defmodule EthereumRPC.Client.BaseClientTest do
     end
 
     def assert_method({ex_method, eth_method}, params, payload) do
-      {result_eth_method, result_payload, _opts} =
-        apply(ClientMock, String.to_atom(ex_method), params)
+      {result_eth_method, result_payload, _opts} = apply(ClientMock, String.to_atom(ex_method), params)
 
       assert result_eth_method == eth_method
       assert result_payload == payload
@@ -58,6 +57,25 @@ defmodule EthereumRPC.Client.BaseClientTest do
     end
   end
 
+  @address "0x407d73d8a49eeb85d32cf465507dd71d507100c1"
+  @hash "0xb903239f8543d04b5dc1ba6579132b143087c68db1b2168786408fcbce568238"
+  @hex_232 "0xe8"
+  @transaction %{
+    "from" => @address,
+    "to" => @address,
+    "gas" => @hex_232,
+    "gasPrice" => @hex_232,
+    "value" => @hex_232,
+    "data" => @hash
+  }
+  @source_code "(returnlll (suicide (caller)))"
+  @filter %{
+    "fromBlock" => "0x1",
+    "toBlock" => "0x2",
+    "address" => "0x8888f1f195afa192cfee860698584c030f4c9db1",
+    "topics" => ["0x000000000000000000000000a94f5374fce5edbc8e2a8697c15331677e6ebf0b"]
+  }
+
   ### Test ###
 
   test ".net_version/0", do: Helpers.check("net_version")
@@ -73,7 +91,6 @@ defmodule EthereumRPC.Client.BaseClientTest do
   test ".eth_block_number/0", do: Helpers.check("eth_block_number")
   # test ".eth_get_compilers/0", do: Helpers.check("eth_get_compilers")
   test ".eth_new_block_filter/0", do: Helpers.check("eth_new_block_filter")
-
 
   # describe ".web3_client_version/0" do
   #   test "with configuration url", do: Helpers.check("web3_client_version")
@@ -97,87 +114,66 @@ defmodule EthereumRPC.Client.BaseClientTest do
       do: Helpers.check("eth_get_proof", [@address, [@hex_232, @hex_232], [@hex_232]])
   end
 
-  # test ".eth_get_work/0", do: Helpers.check("eth_get_work")
-  # test ".shh_version/0", do: Helpers.check("shh_version")
+  test ".eth_get_work/0", do: Helpers.check("eth_get_work")
+  test ".shh_version/0", do: Helpers.check("shh_version")
   # test ".shh_new_identity/0", do: Helpers.check("shh_new_identity")
   # test ".shh_new_group/0", do: Helpers.check("shh_new_group")
 
-  # describe "eth_get_block_transaction_count_by_number/0" do
-  #   test "w/o params",
-  #     do: Helpers.check("eth_get_block_transaction_count_by_number", [], ["latest"])
+  describe "eth_get_block_transaction_count_by_number/0" do
+    test "w/o params", do: Helpers.check("eth_get_block_transaction_count_by_number", [], ["latest"])
+    test "with number", do: Helpers.check("eth_get_block_transaction_count_by_number", [@hex_232])
+  end
 
-  #   test "with number", do: Helpers.check("eth_get_block_transaction_count_by_number", [@hex_232])
-  # end
-
-  # describe "eth_get_uncle_count_by_block_number/0" do
-  #   test "w/o params",
-  #     do: Helpers.check("eth_get_uncle_count_by_block_number", [], ["latest"])
-
-  #   test "with number", do: Helpers.check("eth_get_uncle_count_by_block_number", [@hex_232])
-  # end
+  describe "eth_get_uncle_count_by_block_number/0" do
+    test "w/o params", do: Helpers.check("eth_get_uncle_count_by_block_number", [], ["latest"])
+    test "with number", do: Helpers.check("eth_get_uncle_count_by_block_number", [@hex_232])
+  end
 
   # test ".web3_sha3/1", do: Helpers.check("web3_sha3", ["string to be hashed"])
 
-  # test ".eth_get_balance/1",
-  #   do: Helpers.check("eth_get_balance", [@address], ["latest"])
+  test ".eth_get_balance/1",
+    do: Helpers.check("eth_get_balance", [@address], ["latest"])
 
-  # test ".eth_get_storage_at/1",
-  #   do: Helpers.check("eth_get_storage_at", [@address, "0x0"], ["latest"])
+  test ".eth_get_storage_at/1", do: Helpers.check("eth_get_storage_at", [@address, "0x0"], ["latest"])
 
-  # test ".eth_get_transaction_count/1",
-  #   do: Helpers.check("eth_get_transaction_count", [@address], ["latest"])
+  test ".eth_get_transaction_count/1", do: Helpers.check("eth_get_transaction_count", [@address], ["latest"])
+  test ".eth_get_block_transaction_count_by_hash/1", do: Helpers.check("eth_get_block_transaction_count_by_hash", [@hash])
 
-  # test ".eth_get_block_transaction_count_by_hash/1",
-  #   do: Helpers.check("eth_get_block_transaction_count_by_hash", [@hash])
+  test ".eth_get_uncle_count_by_block_hash/1", do: Helpers.check("eth_get_uncle_count_by_block_hash", [@hash])
 
-  # test ".eth_get_uncle_count_by_block_hash/1",
-  #   do: Helpers.check("eth_get_uncle_count_by_block_hash", [@hash])
+  test ".eth_get_code/1", do: Helpers.check("eth_get_code", [@address], ["latest"])
 
-  # test ".eth_get_code/1",
-  #   do: Helpers.check("eth_get_code", [@address], ["latest"])
+  test ".eth_sign/2", do: Helpers.check("eth_sign", [@address, "data to sign"])
 
-  # test ".eth_sign/2",
-  #   do: Helpers.check("eth_sign", [@address, "data to sign"])
+  test ".eth_send_transaction/1", do: Helpers.check("eth_send_transaction", [@transaction])
 
-  # test ".eth_send_transaction/1",
-  #   do: Helpers.check("eth_send_transaction", [@transaction])
+  test ".eth_send_raw_transaction/1", do: Helpers.check("eth_send_raw_transaction", [@hash])
 
-  # test ".eth_send_raw_transaction/1",
-  #   do: Helpers.check("eth_send_raw_transaction", [@hash])
+  test ".eth_call/1", do: Helpers.check("eth_call", [@transaction], ["latest"])
+  test ".eth_estimate_gas/1", do: Helpers.check("eth_estimate_gas", [@transaction])
 
-  # test ".eth_call/1",
-  #   do: Helpers.check("eth_call", [@transaction], ["latest"])
+  test ".eth_get_block_by_hash/2", do: Helpers.check("eth_get_block_by_hash", [@hash, false])
 
-  # test ".eth_estimate_gas/1",
-  #   do: Helpers.check("eth_estimate_gas", [@transaction])
+  test ".eth_get_block_by_number/2", do: Helpers.check("eth_get_block_by_number", [@hex_232, false])
 
-  # test ".eth_get_block_by_hash/2",
-  #   do: Helpers.check("eth_get_block_by_hash", [@hash, false])
+  test ".eth_get_transaction_by_hash/1", do: Helpers.check("eth_get_transaction_by_hash", [@hash])
 
-  # test ".eth_get_block_by_number/2",
-  #   do: Helpers.check("eth_get_block_by_number", [@hex_232, false])
+  test ".eth_get_transaction_by_block_hash_and_index/2", do: Helpers.check("eth_get_transaction_by_block_hash_and_index", [@hash, "0x0"])
 
-  # test ".eth_get_transaction_by_hash/1",
-  #   do: Helpers.check("eth_get_transaction_by_hash", [@hash])
+  test ".eth_get_transaction_by_block_number_and_index/2",
+    do: Helpers.check("eth_get_transaction_by_block_number_and_index", ["0x29c", "0x0"])
 
-  # test ".eth_get_transaction_by_block_hash_and_index/2",
-  #   do: Helpers.check("eth_get_transaction_by_block_hash_and_index", [@hash, "0x0"])
+  test ".eth_get_transaction_receipt/1", do: Helpers.check("eth_get_transaction_receipt", [@hash])
 
-  # test ".eth_get_transaction_by_block_number_and_index/2",
-  #   do: Helpers.check("eth_get_transaction_by_block_number_and_index", ["0x29c", "0x0"])
+  test ".eth_get_uncle_by_block_hash_and_index/2",
+    do: Helpers.check("eth_get_uncle_by_block_hash_and_index", [@hash, "0x0"])
 
-  # test ".eth_get_transaction_receipt/1",
-  #   do: Helpers.check("eth_get_transaction_receipt", [@hash])
+  test ".eth_get_uncle_by_block_number_and_index/2",
+    do: Helpers.check("eth_get_uncle_by_block_number_and_index", ["0x29c", "0x0"])
 
-  # test ".eth_get_uncle_by_block_hash_and_index/2",
-  #   do: Helpers.check("eth_get_uncle_by_block_hash_and_index", [@hash, "0x0"])
-
-  # test ".eth_get_uncle_by_block_number_and_index/2",
-  #   do: Helpers.check("eth_get_uncle_by_block_number_and_index", ["0x29c", "0x0"])
-
-  # test "eth_compile_lll/1" do
-  #   Helpers.assert_method({"eth_compile_lll", "eth_compileLLL"}, [@source_code], [@source_code])
-  # end
+  test "eth_compile_lll/1" do
+    Helpers.assert_method({"eth_compile_lll", "eth_compileLLL"}, [@source_code], [@source_code])
+  end
 
   # test ".eth_compile_solidity/1",
   #   do: Helpers.check("eth_compile_solidity", [@source_code])
@@ -185,20 +181,15 @@ defmodule EthereumRPC.Client.BaseClientTest do
   # test ".eth_compile_serpent/1",
   #   do: Helpers.check("eth_compile_serpent", [@source_code])
 
-  # test ".eth_new_filter/1",
-  #   do: Helpers.check("eth_new_filter", [@filter])
+  test ".eth_new_filter/1", do: Helpers.check("eth_new_filter", [@filter])
 
   # test ".eth_uninstall_filter/1",
   #   do: Helpers.check("eth_uninstall_filter", ["0xb"])
 
-  # test ".eth_get_filter_changes/1",
-  #   do: Helpers.check("eth_get_filter_changes", ["0xb"])
+  test ".eth_get_filter_changes/1", do: Helpers.check("eth_get_filter_changes", ["0xb"])
+  test ".eth_get_filter_logs/1", do: Helpers.check("eth_get_filter_logs", ["0xb"])
 
-  # test ".eth_get_filter_logs/1",
-  #   do: Helpers.check("eth_get_filter_logs", ["0xb"])
-
-  # test ".eth_get_logs/1",
-  #   do: Helpers.check("eth_get_logs", [@filter])
+  test ".eth_get_logs/1", do: Helpers.check("eth_get_logs", [@filter])
 
   # test ".eth_submit_work/3" do
   #   params = [
@@ -297,24 +288,5 @@ defmodule EthereumRPC.Client.BaseClientTest do
   # test ".shh_get_filter_changes/1",
   #   do: Helpers.check("shh_get_filter_changes", ["0x7"])
 
-  # test ".shh_get_messages/1",
-  #   do: Helpers.check("shh_get_messages", ["0x7"])
-
-  # describe ".batch_request/1" do
-  #   test "increases rpc_counter by request count" do
-  #     _ = Ethereumex.Counter.increment(:rpc_counter, 42, "stub_method")
-  #     initial_count = Ethereumex.Counter.get(:rpc_counter)
-
-  #     requests = [
-  #       {:web3_client_version, []},
-  #       {:net_version, []},
-  #       {:web3_sha3, ["0x68656c6c6f20776f726c64"]}
-  #     ]
-
-  #     _ = ClientMock.batch_request(requests)
-
-  #     assert Ethereumex.Counter.get(:rpc_counter) == initial_count + length(requests)
-  #   end
-  # end
-
+  test ".shh_get_messages/1", do: Helpers.check("shh_get_messages", ["0x7"])
 end

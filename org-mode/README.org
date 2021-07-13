@@ -1,10 +1,8 @@
-#+title: Ethereum API
-#+author: Kaijie Wang
-
-
+#+title: Ethereum RPC2 API
+#+author: zven
 
 * Ethereum API
-** web3_clientVersion
+** DONE web3_clientVersion
 #+begin_src restclient
 POST https://bsc-dataseed.binance.org/
 Content-Type: application/json
@@ -25,21 +23,22 @@ Content-Type: application/json
 }
 // POST https://bsc-dataseed.binance.org/
 // HTTP/1.1 200 OK
-// Date: Tue, 13 Jul 2021 03:36:38 GMT
+// Date: Tue, 13 Jul 2021 03:55:09 GMT
 // Content-Type: application/json
 // Content-Length: 87
 // Connection: close
 // Vary: Accept-Encoding
 // Vary: Origin
+// X-Proxy-Cache: true
 // X-Frame-Options: SAMEORIGIN
 // X-Xss-Protection: 1; mode=block
 // X-Content-Type-Options: nosniff
 // Referrer-Policy: origin-when-cross-origin
 // Strict-Transport-Security: max-age=31536000; includeSubdomains
-// Request duration: 1.324237s
+// Request duration: 0.610139s
 #+END_SRC
 
-** web3_sha3
+** DONE web3_sha3
 #+begin_src restclient
 POST https://bsc-dataseed.binance.org/
 Content-Type: application/json
@@ -78,7 +77,7 @@ Content-Type: application/json
 // Request duration: 1.449943s
 #+END_SRC
 
-** net_version
+** DONE net_version
 #+begin_src restclient
 POST https://bsc-dataseed.binance.org/
 Content-Type: application/json
@@ -113,7 +112,7 @@ Content-Type: application/json
 // Request duration: 1.345768s
 #+END_SRC
 
-** net_peerCount
+** DONE net_peerCount
 #+begin_src restclient
 POST https://bsc-dataseed.binance.org/
 Content-Type: application/json
@@ -148,7 +147,7 @@ Content-Type: application/json
 // Request duration: 1.388685s
 #+END_SRC
 
-** net_listening
+** DONE net_listening
 #+begin_src restclient
 POST https://bsc-dataseed.binance.org/
 Content-Type: application/json
@@ -183,7 +182,7 @@ Content-Type: application/json
 // Request duration: 0.758425s
 #+END_SRC
 
-** eth_protocolVersion
+** DONE eth_protocolVersion
 #+begin_src restclient
 POST https://bsc-dataseed.binance.org/
 Content-Type: application/json
@@ -221,7 +220,7 @@ Content-Type: application/json
 // Request duration: 1.280550s
 #+END_SRC
 
-** eth_syncing
+** DONE eth_syncing
 #+begin_src restclient
 POST https://bsc-dataseed.binance.org/
 Content-Type: application/json
@@ -258,10 +257,117 @@ Content-Type: application/json
 // Request duration: 4.881284s
 #+END_SRC
 
-** TODO eth_coinbase
-** TODO eth_mining
-** TODO eth_hashrate
-** eth_gasPrice
+** DONE eth_coinbase
+#+begin_src restclient
+POST https://bsc-dataseed.binance.org/
+Content-Type: application/json
+{
+    "id": "1337",
+    "jsonrpc": "2.0",
+    "method": "eth_coinbase"
+}
+#+end_src
+
+#+RESULTS:
+#+BEGIN_SRC js
+{
+  "jsonrpc": "2.0",
+  "id": "1337",
+  "error": {
+    "code": -32000,
+    "message": "etherbase must be explicitly specified"
+  }
+}
+
+// POST https://bsc-dataseed.binance.org/
+// HTTP/1.1 200 OK
+// Date: Tue, 13 Jul 2021 03:53:47 GMT
+// Content-Type: application/json
+// Content-Length: 105
+// Connection: close
+// Vary: Accept-Encoding
+// Vary: Origin
+// X-Frame-Options: SAMEORIGIN
+// X-Xss-Protection: 1; mode=block
+// X-Content-Type-Options: nosniff
+// Referrer-Policy: origin-when-cross-origin
+// Strict-Transport-Security: max-age=31536000; includeSubdomains
+// Request duration: 0.689241s
+#+END_SRC
+
+
+** DONE eth_mining
+#+begin_src restclient
+POST https://bsc-dataseed.binance.org/
+Content-Type: application/json
+{
+    "id": "1337",
+    "jsonrpc": "2.0",
+    "method": "eth_mining"
+}
+#+end_src
+
+#+RESULTS:
+#+BEGIN_SRC js
+{
+  "jsonrpc": "2.0",
+  "id": "1337",
+  "result": false
+}
+
+// POST https://bsc-dataseed.binance.org/
+// HTTP/1.1 200 OK
+// Date: Tue, 13 Jul 2021 03:58:53 GMT
+// Content-Type: application/json
+// Content-Length: 45
+// Connection: close
+// Vary: Accept-Encoding
+// Vary: Origin
+// X-Frame-Options: SAMEORIGIN
+// X-Xss-Protection: 1; mode=block
+// X-Content-Type-Options: nosniff
+// Referrer-Policy: origin-when-cross-origin
+// Strict-Transport-Security: max-age=31536000; includeSubdomains
+// Request duration: 1.265990s
+#+END_SRC
+
+** DONE eth_hashrate
+#+begin_src restclient
+POST https://bsc-dataseed.binance.org/
+Content-Type: application/json
+{
+    "id": "1337",
+    "jsonrpc": "2.0",
+    "method": "eth_hashrate"
+}
+
+#+end_src
+
+#+RESULTS:
+#+BEGIN_SRC js
+{
+  "jsonrpc": "2.0",
+  "id": "1337",
+  "result": "0x0"
+}
+
+// POST https://bsc-dataseed.binance.org/
+// HTTP/1.1 200 OK
+// Date: Tue, 13 Jul 2021 04:56:16 GMT
+// Content-Type: application/json
+// Content-Length: 45
+// Connection: close
+// Vary: Accept-Encoding
+// Vary: Origin
+// X-Frame-Options: SAMEORIGIN
+// X-Xss-Protection: 1; mode=block
+// X-Content-Type-Options: nosniff
+// Referrer-Policy: origin-when-cross-origin
+// Strict-Transport-Security: max-age=31536000; includeSubdomains
+// Request duration: 1.407545s
+#+END_SRC
+
+** DONE eth_gasPrice
 #+begin_src restclient
 POST https://bsc-dataseed.binance.org/
 Content-Type: application/json
@@ -270,10 +376,6 @@ Content-Type: application/json
     "jsonrpc": "2.0",
     "method": "eth_gasPrice"
 }
-
-
-
-
 #+end_src
 
 #+RESULTS:
@@ -286,7 +388,7 @@ Content-Type: application/json
 
 // POST https://bsc-dataseed.binance.org/
 // HTTP/1.1 200 OK
-// Date: Tue, 13 Jul 2021 03:28:08 GMT
+// Date: Tue, 13 Jul 2021 03:58:26 GMT
 // Content-Type: application/json
 // Content-Length: 53
 // Connection: close
@@ -297,10 +399,10 @@ Content-Type: application/json
 // X-Content-Type-Options: nosniff
 // Referrer-Policy: origin-when-cross-origin
 // Strict-Transport-Security: max-age=31536000; includeSubdomains
-// Request duration: 1.471388s
+// Request duration: 0.545942s
 #+END_SRC
 
-** eth_accounts
+** DONE eth_accounts
 #+begin_src restclient
 POST https://bsc-dataseed.binance.org/
 Content-Type: application/json
@@ -322,7 +424,7 @@ Content-Type: application/json
 
 // POST https://bsc-dataseed.binance.org/
 // HTTP/1.1 200 OK
-// Date: Tue, 13 Jul 2021 03:37:47 GMT
+// Date: Tue, 13 Jul 2021 04:56:34 GMT
 // Content-Type: application/json
 // Content-Length: 42
 // Connection: close
@@ -333,10 +435,10 @@ Content-Type: application/json
 // X-Content-Type-Options: nosniff
 // Referrer-Policy: origin-when-cross-origin
 // Strict-Transport-Security: max-age=31536000; includeSubdomains
-// Request duration: 1.308438s
+// Request duration: 1.365200s
 #+END_SRC
 
-** eth_blockNumber
+** DONE eth_blockNumber
 #+begin_src restclient
 POST https://bsc-dataseed.binance.org/
 Content-Type: application/json
@@ -354,11 +456,11 @@ Content-Type: application/json
 {
   "jsonrpc": "2.0",
   "id": "1337",
-  "result": "0x8b0167"
+  "result": "0x8b079f"
 }
 // POST https://bsc-dataseed.binance.org/
 // HTTP/1.1 200 OK
-// Date: Tue, 13 Jul 2021 03:37:12 GMT
+// Date: Tue, 13 Jul 2021 04:56:51 GMT
 // Content-Type: application/json
 // Content-Length: 49
 // Connection: close
@@ -370,43 +472,764 @@ Content-Type: application/json
 // X-Content-Type-Options: nosniff
 // Referrer-Policy: origin-when-cross-origin
 // Strict-Transport-Security: max-age=31536000; includeSubdomains
-// Request duration: 0.587777s
+// Request duration: 1.291450s
 #+END_SRC
 
-** TODO eth_getBalance
-** TODO eth_getStorageAt
-** TODO eth_getTransactionCount
-** TODO eth_getBlockTransactionCountByHash
-** TODO eth_getBlockTransactionCountByNumber
-** TODO eth_getUncleCountByBlockHash
-** TODO eth_getUncleCountByBlockNumber
-** TODO eth_getCode
-** TODO eth_sign
-** TODO eth_sendTransaction
-** TODO eth_sendRawTransaction
-** TODO eth_call
-** TODO eth_estimateGas
-** TODO eth_getBlockByHash
-** TODO eth_getBlockByNumber
-** TODO eth_getTransactionByHash
-** TODO eth_getTransactionByBlockHashAndIndex
-** TODO eth_getTransactionByBlockNumberAndIndex
-** TODO eth_getTransactionReceipt
-** TODO eth_getUncleByBlockHashAndIndex
-** TODO eth_getUncleByBlockNumberAndIndex
+** DONE eth_getBalance
+#+begin_src restclient
+POST https://bsc-dataseed.binance.org/
+Content-Type: application/json
+{
+    "id": "1337",
+    "jsonrpc": "2.0",
+    "method": "eth_getBalance",
+    "params": ["0x407d73d8a49eeb85d32cf465507dd71d507100c1", "latest"]
+}
+#+end_src
+
+** DONE eth_getStorageAt
+# Returns the value from a storage position at a given address.
+#+begin_src restclient
+POST https://bsc-dataseed.binance.org/
+Content-Type: application/json
+{
+    "id": "1337",
+    "jsonrpc": "2.0",
+    "method": "eth_getStorageAt",
+    "params":["0x407d73d8a49eeb85d32cf465507dd71d507100c1","0x0","latest"]
+}
+#+end_src
+
+** DONE eth_getTransactionCount
+# Returns the number of transactions sent from an address
+#+begin_src restclient
+POST https://bsc-dataseed.binance.org/
+Content-Type: application/json
+{
+    "id": "1337",
+    "jsonrpc": "2.0",
+    "method": "eth_getTransactionCount",
+    "params":["0x407d73d8a49eeb85d32cf465507dd71d507100c1","latest"]
+}
+#+end_src
+
+** DONE eth_getBlockTransactionCountByHash
+# Returns the number of transactions in a block specified by block hash
+#+begin_src restclient
+POST https://bsc-dataseed.binance.org/
+Content-Type: application/json
+{
+    "id": "1337",
+    "jsonrpc": "2.0",
+    "method": "eth_getBlockTransactionCountByHash",
+    "params": ["0xb903239f8543d04b5dc1ba6579132b143087c68db1b2168786408fcbce568238"]
+}
+#+end_src
+
+#+RESULTS:
+#+BEGIN_SRC js
+{
+  "jsonrpc": "2.0",
+  "id": "1337",
+  "result": null
+}
+
+// POST https://bsc-dataseed.binance.org/
+// HTTP/1.1 200 OK
+// Date: Tue, 13 Jul 2021 06:12:04 GMT
+// Content-Type: application/json
+// Content-Length: 44
+// Connection: close
+// Vary: Accept-Encoding
+// Vary: Origin
+// X-Frame-Options: SAMEORIGIN
+// X-Xss-Protection: 1; mode=block
+// X-Content-Type-Options: nosniff
+// Referrer-Policy: origin-when-cross-origin
+// Strict-Transport-Security: max-age=31536000; includeSubdomains
+// Request duration: 0.773485s
+#+END_SRC
+
+** DONE eth_getBlockTransactionCountByNumber
+#
+#+begin_src restclient
+POST https://bsc-dataseed.binance.org/
+Content-Type: application/json
+{
+    "id": "1337",
+    "jsonrpc": "2.0",
+    "method": "eth_getBlockTransactionCountByNumber",
+    "params": ["latest"]
+}
+#+end_src
+
+#+begin_src restclient
+POST https://bsc-dataseed.binance.org/
+Content-Type: application/json
+{
+    "id": "1337",
+    "jsonrpc": "2.0",
+    "method": "eth_getBlockTransactionCountByNumber",
+    "params": ["0xe8"]
+}
+#+end_src
+
+** DONE eth_getUncleCountByBlockHash
+# 0xb903239f8543d04b5dc1ba6579132b143087c68db1b2168786408fcbce568238
+#+begin_src restclient
+POST https://bsc-dataseed.binance.org/
+Content-Type: application/json
+{
+    "id": "1337",
+    "jsonrpc": "2.0",
+    "method": "eth_getUncleCountByBlockHash",
+    "params": ["0xb903239f8543d04b5dc1ba6579132b143087c68db1b2168786408fcbce568238"]
+}
+#+end_src
+
+** DONE eth_getUncleCountByBlockNumber
+# Returns the number of uncles in a block specified by block hash
+#+begin_src restclient
+POST https://bsc-dataseed.binance.org/
+Content-Type: application/json
+{
+    "id": "1337",
+    "jsonrpc": "2.0",
+    "method": "eth_getUncleCountByBlockNumber",
+    "params": ["0xe8"]
+}
+#+end_src
+
+#+begin_src restclient
+POST https://bsc-dataseed.binance.org/
+Content-Type: application/json
+{
+    "id": "1337",
+    "jsonrpc": "2.0",
+    "method": "eth_getUncleCountByBlockNumber",
+    "params": ["latest"]
+}
+#+end_src
+
+** DONE eth_getCode
+# Returns the contract code stored at a given address
+#+begin_src restclient
+POST https://bsc-dataseed.binance.org/
+Content-Type: application/json
+{
+    "id": "1337",
+    "jsonrpc": "2.0",
+    "method": "eth_getCode",
+    "params": ["0x407d73d8a49eeb85d32cf465507dd71d507100c1","latest"]
+}
+#+end_src
+
+#+RESULTS:
+#+BEGIN_SRC js
+{
+  "jsonrpc": "2.0",
+  "id": "1337",
+  "result": "0x"
+}
+// POST https://bsc-dataseed.binance.org/
+// HTTP/1.1 200 OK
+// Date: Tue, 13 Jul 2021 06:33:30 GMT
+// Content-Type: application/json
+// Content-Length: 43
+// Connection: close
+// Vary: Accept-Encoding
+// Vary: Origin
+// X-Frame-Options: SAMEORIGIN
+// X-Xss-Protection: 1; mode=block
+// X-Content-Type-Options: nosniff
+// Referrer-Policy: origin-when-cross-origin
+// Strict-Transport-Security: max-age=31536000; includeSubdomains
+// Request duration: 1.312031s
+#+END_SRC
+
+** DONE eth_sign
+# ["0x407d73d8a49eeb85d32cf465507dd71d507100c1","data to sign"]
+#+begin_src restclient
+POST https://bsc-dataseed.binance.org/
+Content-Type: application/json
+{
+    "id": "1337",
+    "jsonrpc": "2.0",
+    "method": "eth_sign",
+    "params": ["0xe9ae3261a475a27bb1028f140bc2a7c843318afd", "data to sign"]
+}
+
+#+end_src
+
+** DONE eth_sendTransaction
+# Creates, signs, and sends a new transaction to the network
+#+begin_src restclient
+POST https://bsc-dataseed.binance.org/
+Content-Type: application/json
+{
+    "id": "1337",
+    "jsonrpc": "2.0",
+    "method": "eth_sendTransaction",
+    "params": [{"data":"0xb903239f8543d04b5dc1ba6579132b143087c68db1b2168786408fcbce568238","from":"0x407d73d8a49eeb85d32cf465507dd71d507100c1","gas":"0xe8","gasPrice":"0xe8","to":"0x407d73d8a49eeb85d32cf465507dd71d507100c1","value":"0xe8"}]
+}
+
+#+end_src
+
+#+RESULTS:
+#+BEGIN_SRC js
+{
+  "jsonrpc": "2.0",
+  "id": "1337",
+  "error": {
+    "code": -32000,
+    "message": "unknown account"
+  }
+}
+
+// POST https://bsc-dataseed.binance.org/
+// HTTP/1.1 200 OK
+// Date: Tue, 13 Jul 2021 06:40:47 GMT
+// Content-Type: application/json
+// Content-Length: 82
+// Connection: close
+// Vary: Accept-Encoding
+// Vary: Origin
+// X-Frame-Options: SAMEORIGIN
+// X-Xss-Protection: 1; mode=block
+// X-Content-Type-Options: nosniff
+// Referrer-Policy: origin-when-cross-origin
+// Strict-Transport-Security: max-age=31536000; includeSubdomains
+// Request duration: 0.602111s
+#+END_SRC
+
+** DONE eth_sendRawTransaction
+# eth_sendRawTransaction
+#+begin_src restclient
+POST https://bsc-dataseed.binance.org/
+Content-Type: application/json
+{
+    "id": "1337",
+    "jsonrpc": "2.0",
+    "method": "eth_sendRawTransaction",
+    "params": ["0xb903239f8543d04b5dc1ba6579132b143087c68db1b2168786408fcbce568238"]
+}
+
+#+end_src
+
+#+RESULTS:
+#+BEGIN_SRC js
+{
+  "jsonrpc": "2.0",
+  "id": "1337",
+  "error": {
+    "code": -32000,
+    "message": "rlp: value size exceeds available input length"
+  }
+}
+
+// POST https://bsc-dataseed.binance.org/
+// HTTP/1.1 200 OK
+// Date: Tue, 13 Jul 2021 06:46:37 GMT
+// Content-Type: application/json
+// Content-Length: 113
+// Connection: close
+// Vary: Accept-Encoding
+// Vary: Origin
+// X-Frame-Options: SAMEORIGIN
+// X-Xss-Protection: 1; mode=block
+// X-Content-Type-Options: nosniff
+// Referrer-Policy: origin-when-cross-origin
+// Strict-Transport-Security: max-age=31536000; includeSubdomains
+// Request duration: 0.889848s
+#+END_SRC
+
+** DONE eth_call
+#+begin_src restclient
+POST https://bsc-dataseed.binance.org/
+Content-Type: application/json
+{
+    "id": "1337",
+    "jsonrpc": "2.0",
+    "method": "eth_call",
+    "params": [{"data":"0xb903239f8543d04b5dc1ba6579132b143087c68db1b2168786408fcbce568238","from":"0x407d73d8a49eeb85d32cf465507dd71d507100c1","gas":"0xe8","gasPrice":"0xe8","to":"0x407d73d8a49eeb85d32cf465507dd71d507100c1","value":"0xe8"},"latest"]
+}
+#+end_src
+
+#+RESULTS:
+#+BEGIN_SRC js
+{
+  "jsonrpc": "2.0",
+  "id": "1337",
+  "error": {
+    "code": -32000,
+    "message": "err: insufficient funds for gas * price + value: address 0x407D73d8a49eeb85D32Cf465507dd71d507100c1 have 0 want 53824 (supplied gas 232)"
+  }
+}
+// POST https://bsc-dataseed.binance.org/
+// HTTP/1.1 200 OK
+// Date: Tue, 13 Jul 2021 07:07:59 GMT
+// Content-Type: application/json
+// Content-Length: 202
+// Connection: close
+// Vary: Accept-Encoding
+// Vary: Origin
+// X-Frame-Options: SAMEORIGIN
+// X-Xss-Protection: 1; mode=block
+// X-Content-Type-Options: nosniff
+// Referrer-Policy: origin-when-cross-origin
+// Strict-Transport-Security: max-age=31536000; includeSubdomains
+// Request duration: 0.660495s
+#+END_SRC
+
+
+#+end_src
+** DONE eth_estimateGas
+# {"data":"0xb903239f8543d04b5dc1ba6579132b143087c68db1b2168786408fcbce568238","from":"0x407d73d8a49eeb85d32cf465507dd71d507100c1","gas":"0xe8","gasPrice":"0xe8","to":"0x407d73d8a49eeb85d32cf465507dd71d507100c1","value":"0xe8"}
+
+#+begin_src restclient
+POST https://bsc-dataseed.binance.org/
+Content-Type: application/json
+{
+    "id": "1337",
+    "jsonrpc": "2.0",
+    "method": "eth_estimateGas",
+    "params": [{"data":"0xb903239f8543d04b5dc1ba6579132b143087c68db1b2168786408fcbce568238","from":"0x407d73d8a49eeb85d32cf465507dd71d507100c1","gas":"0xe8","gasPrice":"0xe8","to":"0x407d73d8a49eeb85d32cf465507dd71d507100c1","value":"0xe8"}]
+}
+
+#+end_src
+
+** DONE eth_getBlockByHash
+# "0xb903239f8543d04b5dc1ba6579132b143087c68db1b2168786408fcbce568238",false
+#+begin_src restclient
+POST https://bsc-dataseed.binance.org/
+Content-Type: application/json
+{
+    "id": "1337",
+    "jsonrpc": "2.0",
+    "method": "eth_estimateGas",
+    "params": ["0xb903239f8543d04b5dc1ba6579132b143087c68db1b2168786408fcbce568238",false]
+}
+
+#+end_src
+
+#+RESULTS:
+#+BEGIN_SRC js
+{
+  "jsonrpc": "2.0",
+  "id": "1337",
+  "error": {
+    "code": -32602,
+    "message": "invalid argument 0: json: cannot unmarshal string into Go value of type ethapi.CallArgs"
+  }
+}
+
+// POST https://bsc-dataseed.binance.org/
+// HTTP/1.1 200 OK
+// Date: Tue, 13 Jul 2021 07:20:38 GMT
+// Content-Type: application/json
+// Content-Length: 154
+// Connection: close
+// Vary: Accept-Encoding
+// Vary: Origin
+// X-Frame-Options: SAMEORIGIN
+// X-Xss-Protection: 1; mode=block
+// X-Content-Type-Options: nosniff
+// Referrer-Policy: origin-when-cross-origin
+// Strict-Transport-Security: max-age=31536000; includeSubdomains
+// Request duration: 0.848104s
+#+END_SRC
+
+** DONE eth_getBlockByNumber
+#+begin_src restclient
+POST https://bsc-dataseed.binance.org/
+Content-Type: application/json
+{
+    "id": "1337",
+    "jsonrpc": "2.0",
+    "method": "eth_getBlockByNumber",
+    "params": ["0xe8",false]
+}
+#+end_src
+
+** DONE eth_getTransactionByHash
+#
+#+begin_src restclient
+POST https://bsc-dataseed.binance.org/
+Content-Type: application/json
+{
+    "id": "1337",
+    "jsonrpc": "2.0",
+    "method": "eth_getTransactionByHash",
+    "params": ["0xb903239f8543d04b5dc1ba6579132b143087c68db1b2168786408fcbce568238"]
+}
+#+end_src
+
+#+RESULTS:
+#+BEGIN_SRC js
+{
+  "jsonrpc": "2.0",
+  "id": "1337",
+  "result": null
+}
+// POST https://bsc-dataseed.binance.org/
+// HTTP/1.1 200 OK
+// Date: Tue, 13 Jul 2021 07:22:39 GMT
+// Content-Type: application/json
+// Content-Length: 43
+// Connection: close
+// Vary: Accept-Encoding
+// Vary: Origin
+// X-Frame-Options: SAMEORIGIN
+// X-Xss-Protection: 1; mode=block
+// X-Content-Type-Options: nosniff
+// Referrer-Policy: origin-when-cross-origin
+// Strict-Transport-Security: max-age=31536000; includeSubdomains
+// Request duration: 1.508053s
+#+END_SRC
+
+** DONE eth_getTransactionByBlockHashAndIndex
+#+begin_src restclient
+POST https://bsc-dataseed.binance.org/
+Content-Type: application/json
+{
+    "id": "1337",
+    "jsonrpc": "2.0",
+    "method": "eth_getTransactionByBlockHashAndIndex",
+    "params": ["0xb903239f8543d04b5dc1ba6579132b143087c68db1b2168786408fcbce568238","0x0"]
+}
+#+end_src
+
+** DONE eth_getTransactionByBlockNumberAndIndex
+#+begin_src restclient
+POST https://bsc-dataseed.binance.org/
+Content-Type: application/json
+{
+    "id": "1337",
+    "jsonrpc": "2.0",
+    "method": "eth_getTransactionByBlockNumberAndIndex",
+    "params": ["0x29c","0x0"]
+}
+#+end_src
+
+#+RESULTS:
+#+BEGIN_SRC js
+{
+  "jsonrpc": "2.0",
+  "id": "1337",
+  "result": null
+}
+
+// POST https://bsc-dataseed.binance.org/
+// HTTP/1.1 200 OK
+// Date: Tue, 13 Jul 2021 07:25:58 GMT
+// Content-Type: application/json
+// Content-Length: 44
+// Connection: close
+// Vary: Accept-Encoding
+// Vary: Origin
+// X-Frame-Options: SAMEORIGIN
+// X-Xss-Protection: 1; mode=block
+// X-Content-Type-Options: nosniff
+// Referrer-Policy: origin-when-cross-origin
+// Strict-Transport-Security: max-age=31536000; includeSubdomains
+// Request duration: 1.240826s
+#+END_SRC
+
+** DONE eth_getTransactionReceipt
+# Returns the receipt of a transaction by transaction hash. Note that the receipt is not available for pending transactions.
+#+begin_src restclient
+POST https://bsc-dataseed.binance.org/
+Content-Type: application/json
+{
+    "id": "1337",
+    "jsonrpc": "2.0",
+    "method": "eth_getTransactionReceipt",
+    "params": ["0xb903239f8543d04b5dc1ba6579132b143087c68db1b2168786408fcbce568238"]
+}
+#+end_src
+
+** DONE eth_getUncleByBlockHashAndIndex
+# ["0xb903239f8543d04b5dc1ba6579132b143087c68db1b2168786408fcbce568238","0x0"]
+#+begin_src restclient
+POST https://bsc-dataseed.binance.org/
+Content-Type: application/json
+{
+    "id": "1337",
+    "jsonrpc": "2.0",
+    "method": "eth_getUncleByBlockHashAndIndex",
+    "params": ["0xb903239f8543d04b5dc1ba6579132b143087c68db1b2168786408fcbce568238","0x0"]
+}
+#+end_src
+
+** DONE eth_getUncleByBlockNumberAndIndex
+# ["latest"]
+#+begin_src restclient
+POST https://bsc-dataseed.binance.org/
+Content-Type: application/json
+{
+    "id": "1337",
+    "jsonrpc": "2.0",
+    "method": "eth_getUncleByBlockNumberAndIndex",
+    "params": ["0x29c","0x0"]
+}
+#+end_src
+
 ** TODO eth_getCompilers
 ** TODO eth_compileLLL
 ** TODO eth_compileSolidity
 ** TODO eth_compileSerpent
-** TODO eth_newFilter
+** DONE eth_newFilter
+# [{"address":"0x8888f1f195afa192cfee860698584c030f4c9db1","fromBlock":"0x1","toBlock":"0x2","topics":["0x000000000000000000000000a94f5374fce5edbc8e2a8697c15331677e6ebf0b"]}]
+#+begin_src restclient
+POST https://bsc-dataseed.binance.org/
+Content-Type: application/json
+{
+    "id": "1337",
+    "jsonrpc": "2.0",
+    "method": "eth_getUncleByBlockNumberAndIndex",
+    "params": [{"address":"0x8888f1f195afa192cfee860698584c030f4c9db1","fromBlock":"0x1","toBlock":"0x2","topics":["0x000000000000000000000000a94f5374fce5edbc8e2a8697c15331677e6ebf0b"]}]
+}
+
+#+end_src
+
+#+RESULTS:
+#+BEGIN_SRC js
+{
+  "jsonrpc": "2.0",
+  "id": "1337",
+  "error": {
+    "code": -32602,
+    "message": "invalid argument 0: hex string without 0x prefix"
+  }
+}
+
+// POST https://bsc-dataseed.binance.org/
+// HTTP/1.1 200 OK
+// Date: Tue, 13 Jul 2021 08:01:00 GMT
+// Content-Type: application/json
+// Content-Length: 115
+// Connection: close
+// Vary: Accept-Encoding
+// Vary: Origin
+// X-Frame-Options: SAMEORIGIN
+// X-Xss-Protection: 1; mode=block
+// X-Content-Type-Options: nosniff
+// Referrer-Policy: origin-when-cross-origin
+// Strict-Transport-Security: max-age=31536000; includeSubdomains
+// Request duration: 0.612389s
+#+END_SRC
+
 ** TODO eth_newBlockFilter
 ** TODO eth_newPendingTransactionFilter
 ** TODO eth_uninstallFilter
-** TODO eth_getFilterChanges
-** TODO eth_getFilterLogs
-** TODO eth_getLogs
-** TODO eth_getProof
-** TODO eth_getWork
+** DONE eth_getFilterChanges
+# Returns a list of all logs based on filter ID since the last log retrieval
+#+begin_src restclient
+POST https://bsc-dataseed.binance.org/
+Content-Type: application/json
+{
+    "id": "1337",
+    "jsonrpc": "2.0",
+    "method": "eth_getFilterChanges",
+    "params": ["0xb"]
+}
+
+#+end_src
+
+** DONE eth_getFilterLogs
+# Returns a list of all logs based on filter ID
+#+begin_src restclient
+POST https://bsc-dataseed.binance.org/
+Content-Type: application/json
+{
+    "id": "1337",
+    "jsonrpc": "2.0",
+    "method": "eth_getFilterLogs",
+    "params": ["0xb"]
+}
+#+end_src
+
+#+RESULTS:
+#+BEGIN_SRC js
+{
+  "jsonrpc": "2.0",
+  "id": "1337",
+  "error": {
+    "code": -32000,
+    "message": "filter not found"
+  }
+}
+
+// POST https://bsc-dataseed.binance.org/
+// HTTP/1.1 200 OK
+// Date: Tue, 13 Jul 2021 07:51:30 GMT
+// Content-Type: application/json
+// Content-Length: 83
+// Connection: close
+// Vary: Accept-Encoding
+// Vary: Origin
+// X-Frame-Options: SAMEORIGIN
+// X-Xss-Protection: 1; mode=block
+// X-Content-Type-Options: nosniff
+// Referrer-Policy: origin-when-cross-origin
+// Strict-Transport-Security: max-age=31536000; includeSubdomains
+// Request duration: 1.208371s
+#+END_SRC
+
+** DONE eth_getLogs
+# [{"address":"0x8888f1f195afa192cfee860698584c030f4c9db1","fromBlock":"0x1","toBlock":"0x2","topics":["0x000000000000000000000000a94f5374fce5edbc8e2a8697c15331677e6ebf0b"]}]
+#+begin_src restclient
+POST https://bsc-dataseed.binance.org/
+Content-Type: application/json
+{
+    "id": "1337",
+    "jsonrpc": "2.0",
+    "method": "eth_getLogs",
+    "params": [{"address":"0x8888f1f195afa192cfee860698584c030f4c9db1","fromBlock":"0x1","toBlock":"0x2","topics":["0x000000000000000000000000a94f5374fce5edbc8e2a8697c15331677e6ebf0b"]}]
+}
+#+end_src
+
+** DONE eth_getProof
+#+begin_src restclient
+POST https://bsc-dataseed.binance.org/
+Content-Type: application/json
+{
+    "id": "1337",
+    "jsonrpc": "2.0",
+    "method": "eth_getProof",
+    "params": ["0x407d73d8a49eeb85d32cf465507dd71d507100c1",["0xe8","0xe8"], "0xe8"]
+}
+#+end_src
+
+#+RESULTS:
+#+BEGIN_SRC js
+{
+  "jsonrpc": "2.0",
+  "id": "1337",
+  "error": {
+    "code": -32000,
+    "message": "missing trie node 399b4fc0c23aa173febb49cbcfd8234a26218b4b7940df92e0839efe118da3ed (path )"
+  }
+}
+
+// POST https://bsc-dataseed.binance.org/
+// HTTP/1.1 200 OK
+// Date: Tue, 13 Jul 2021 07:46:04 GMT
+// Content-Type: application/json
+// Content-Length: 157
+// Connection: close
+// Vary: Accept-Encoding
+// Vary: Origin
+// X-Frame-Options: SAMEORIGIN
+// X-Xss-Protection: 1; mode=block
+// X-Content-Type-Options: nosniff
+// Referrer-Policy: origin-when-cross-origin
+// Strict-Transport-Security: max-age=31536000; includeSubdomains
+// Request duration: 0.799542s
+#+END_SRC
+
+#+begin_src restclient
+POST https://bsc-dataseed.binance.org/
+Content-Type: application/json
+{
+    "id": "1337",
+    "jsonrpc": "2.0",
+    "method": "eth_getProof",
+    "params": ["0x407d73d8a49eeb85d32cf465507dd71d507100c1",["0xe8","0xe8"],"latest"]
+}
+#+end_src
+
+#+RESULTS:
+#+BEGIN_SRC js
+{
+  "jsonrpc": "2.0",
+  "id": "1337",
+  "result": {
+    "address": "0x407d73d8a49eeb85d32cf465507dd71d507100c1",
+    "accountProof": [
+      "0xf90211a05e897afc86707a1f3c5bf990ebccb5ab4591b51cd6555307ea36196cd55e339ca06b2f50bb3cb7207527fb0648ff503b28fd2c2e5d86031586327d9d76a03f3a01a0b19265207ea87c620339faddb7365f0a4f2a5d019dcd853817d79326c4fc168ea09c6b448e5eeb0b49d51b7ee39587c60aef283f8764ced9d0e45fa37ca9ad1370a02f17982a8881f44350bfb35f0a98f093aafbff3f09e9c4bb2340b720cf7b7a55a0d5cc43a5f1791bd9f11ab155f04bd2fb8fbdf6d4e2ba483992853673a1491eaea07515865ef2d6b22fe7150003327a444b280a745abefa2e24b63dc50a02fe84a9a09691e5e53818a26595a17fbc781a685107ddd82ad9fd019586389dd2681efc15a017aca89ff04cd0ebcf946683eab60377e59f5dd4428452198275efa3e8d3f24aa086123cf65c4d4859e14e229efaf709c3f23622c79942ad6b2cc62694ad339d44a0d33b07bd6c288bf0097f8244c1063d4bd4323f7ba84324519996bf4bf3868cc0a02dcc7404103f09742b19c153021652162da264ecd020feaca51b0db597a57616a0bef23c91a927385e84d69cb90990f0fa00e9a30682693bffa0d96ad064063c66a07e3d5019fa117d09affa56b45b412b88e117de3e2b706653cd0ace685f818b7aa0bab9df377c7b45ab244d5b64b6a943cdd2dac25af9245649ad24e16b6ddbb0cba0a799123729b20e4edd151ed31714b01b38e9bc94bac5a414d934da60bb9a832e80",
+      "0xf90211a01436b9937edb637d43de28a9c95a101968f9a4b34139db97a6dba9c440d8ace8a040758da7a8d5b74bede80c5be8652949de8b59e27780ff7a249426aabbee5768a09c2bd81e0be60118eb7bf8deac3195a196668b1fa9a83a2bcc1b445c6c0e8128a0ef2bf296ad40be5761025d4ae2216124cf8b36d4c3744e3e278fed18d62a4853a034037ae703e58b83aa54e9c775e0fae79f5532f8438225a7b70959bb4d36226ea0bb5437ca44784e22947e62090a9010525e69b434bcf00a534cb92af0dbb6c292a051dded033d65cc9089dc20c58259f5819e6fa5badbfd90c4d43250c8192ebbb0a073e6228fc06fcb4e87a16a6163e0583b1ffd6dc1ff808190d01bbe8fd7a8c6baa0409d26463d15aac032377c1c31a2d8ea8b7bd799236b36c98267988853f7a189a09a7d825cfb3fd33dba1e3e8a5dd7409a3f4c26aa63b6289670cc8049c04748bba02d586a69a50e64f07f20b70e15e7b3f2429fdbf02b56e368c1b0104340a0e2bea0c6c548d7a1eebb61521f94c006f22f5585024d29fb29dae00deee72356edfebda020c77251ef4c03f3c8184b91205dc09c87a8f418419945e258e9b4315db89799a0a9dc38127942deae2d42583940dd7ab59468489f7d41b63a3791e33a77f1b033a0a00d5582d917aeaf1b4c0c0f2e7bf474287bdc780aeb7d3ed1ef40013dba33d1a02f239187cc96101f45b53447951dd1938a23277b863afb13b314257ba117b9ab80",
+      "0xf90211a05bc6b3f5774146b5e83f8d6bf5155d76f8035b55d810269ba2fac55cc1bccc80a01f6601a2296aa7ee273a30fc5a020021d627559e3a796bf72aaf3ea283b0dde5a0138b421cb9a587edabecea677fe10e1f7e97fdc73fffef2579d54fb51989ec61a078e1cce2108aa4200f7cd18351e6a8e8adc98f4bfc22a6af28ebb5816a555cd7a0215d3c1fa1cfb3edc00554a9719260b9e601c010480b80481e5c635fd3b1de30a0b797808d37c51cc35db80defa71ecd8f157a6bf174e746c73db9a0e690664a2ba05a0331c28dd79cf7a4dbe36351ea486a370cdee49c16debd054c4a3928e4ef79a030c282e306cd35cdb604cba2d2b28039140e5030b21a0f6e00e0748e582e8a71a053c7e654ffb7a5e1371c8ab72c2eb52a691f3b660bc6ab9cb823e35d53e84681a0c020b6422d91fab0e5d53017bc2dcc73cf664625a459d847c2df98164fec7f00a0052594e2ee86701e7d08aa0d9093eea7258c06de19c859f47de4b60feb359a11a02f6eed394ee2b420bcffa3bb9216a970f5dbe8d722b4e92c2ca157b44ed69aeca05d7afe0e02f3f1e0047df3132c4d73456711df44fb689c801187f9375eac3474a0336855cf7ad3eabf87a4e8638eeacc80e293f141b490a1d0c9a8cb4525f2c1c8a0aa17e6e115d9fdfad1598dd9e564a38f665b76104128af1fd87f222db3d4462ca0cc866a3d7a075b3ccda88951628bd171cf2cddd37460f34df3b6ce32602cf63680",
+      "0xf90211a0b10e5a6f420e0f08c9f687e642950808f00861d9d549658b4356b9e18401aa7aa095731aeca0a32efc20cd36b1be0d1fd48eaeeafdca2778ce0e6a3e36fb89e2dfa0d902885168ef185b6550e78ec8079efc23f5af36b087a7e774bbf812bb1329caa0ea210f4953eb2f1a8e5c3ec32b1eafb4b7611f2f1628b1856678f4676f85d029a016e2911f70705d62c0c23e6c20a7e032694d1d99e05f6fc27b81c6d4b3de6360a0e7b3c2d824e61ef5d4122acb0a8c7863dd2a8a934f46b683f8d72da4b510ddbaa0b671457d0b94d5fcf240870a775cc9c68d1563e5272646b0bc6980dcbbaeb89fa0eb89a5854f761bdf6359fd4fa7a20948f11a28ef33e53e114ca4c6e15f581f1ba0031de7411f02d6231f0c2a702378e57977c1c441ceb885b98c41187f40458fada08605c36dc6d7ac9a0636c9e8912c8d0d52edbd1047fedd17ff7ff7b388dd30e3a09b6862cfeca8f437d50c9104a571fb3124f7b15f848f8e1fa3dbac8920831edfa0265112b74344bf2b6a7b7cb127c5def2072aa01210dc922ef9620317fb7d99e7a07e6452f6de034bd7a8eebf47a4dd1d20d68caa9c4ee5e6b1c633715e862b0a82a0467f3d6a9b645b5680ef6e0c5019aced0f6088132fa050801b12297f9ba123fea06418a82a96efacf0add425016bad24bfe5bd927a896d88e82692fca23e27ec8fa06c49917887ed98841ad5dd99314fd440b702edd2f9f9d05e110e6ba4b83c019280",
+      "0xf90211a066226c9fee3d800affeaf4eb4d83806aaa1519d5c31dfea66f1a3f266081327ca0ad316a64bc94ca134627d227a40d3d958ca5bd2a558e47ede2359e73f5169f91a0a2981e2776aaf12876c225cd9b45b86ffa659a30533e4a57c4f288a19174fd64a038fe4131b5ee6eb46623454c96af711d195a8e9f9c30dea887b2fabf51dc822aa08fff8fc85efce93960e240b1e179f33b638afa6e19644fdfcb9678481acb7271a0bd8e637f75e48333ca9095cd6025c147c0008838405f6d04d59fde436d62802ea02e7e8aaa0d5ac381da35025201ffbe49a01ff10c719b2e58cfd280e02986aac8a0c1f046fceaff77cbf78ecfc10bf1206e64036056313b462c0f940be4fc3929cfa0c86aeb73b81b99965a7808b401663f71d256fbd20b7928dc7e9aa7fbf0038c03a088708ea0c56f1720ecf54aa79bf471cb7fb192e3d8bcd54d7ad279427ddc2760a0ab21b4932472620bda0a84e2be2d16d8f63ea32bb977e25d8585ac1fbd353fd9a0eb8a1f28ef564d2bae33c052e3cb613458b5760da7f2e24d7352bd4a25e3c2bda01c7d613a3a4f5c0cc93dfbf89f43d5afd08b7d9357ecea23a820b0c0499f2682a05569617f0f2a21b38ccf31e667be6906861d4d6d3844c307a56f980ada761020a0264163d34c9b0632f531c081d4f76ceb010bbcd94e14d5ea36a6acd14052feffa0b5ce0da65cc63dba37222e1ceb9f0d87799a326493efe1e10f88b085b8b3b3d680",
+      "0xf90211a03a068e2ace611b4a99c212c8b48e31a7f60b2352b12bff02dcf81a7b587f8ef1a00bb47dea76f53d42d886922da890dc993a24e190f1e633fa2f7b66ac2620b1dca0de261ad7fede3144ab82666a9961575f11ddabe41e55cbfd2683f4be769cff29a00b7bf2270734816f774c03570822e1e496a8c14abe9084f27db9b67fcc56659aa0acb422d04d24863b1ee84748d56ae0018d02153a8956cb3639a1032b7cda21c9a05d94fee3fae7bbcc8262ad1ce82123fa7157ea1e452e0674b764403fc8710a5da00319f0a1a5ea86ac0e7c56587195352262d251c09e1a1463424543517aa3bcd8a0f6d9db80a5d033a656b2a04e8129fcf7f6367602fe74f6bbeb6d06ce255e9b91a05b42a894220ac3dac6195cd32b95aa3fbc142cd5079e486402829a8139db3769a06b05266ef74dafc4d526102050a1965e512a72214b35290b08341004866e4232a0b3b6a27f222f643c345f681b03bda90345bdfb0c14c31e90d687202b9fcb435ba0e8757f23e4e950996e10a89f2a761d6ebaa1ef198d7a8060de6c97a2a686a18ea0086ee0d6f163d22931b81050a6e463148d090d95f5851b3b5f86ae275d858c8ea024a038c87be7fd365fcef37604149bb37fd8847e8604af0ca7a00c9e38b92303a014cefbe6e296665f162e918c866e6334e707a6e722b4781fcb3da7d3c1d4567da0299969805abdd733ebed76e285114d74b7f4383956a3dc04d44812b7a51c5a5980",
+      "0xf85180808080808080808080808080a062ef67cc4190241955b72c8abf64893e0af9ee1d8dd4489802bf29414b565dc380a0cdf88c068cb4ad7fa201ebc974683c333aa10ba795cc1b14bc6e43be7c90018b80"
+    ],
+    "balance": "0x0",
+    "codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+    "nonce": "0x0",
+    "storageHash": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+    "storageProof": [
+      {
+        "key": "0xe8",
+        "value": "0x0",
+        "proof": []
+      },
+      {
+        "key": "0xe8",
+        "value": "0x0",
+        "proof": []
+      }
+    ]
+  }
+}
+
+// POST https://bsc-dataseed.binance.org/
+// HTTP/1.1 200 OK
+// Date: Tue, 13 Jul 2021 07:45:48 GMT
+// Content-Type: application/json
+// Transfer-Encoding: chunked
+// Connection: close
+// Vary: Accept-Encoding
+// Vary: Origin
+// X-Frame-Options: SAMEORIGIN
+// X-Xss-Protection: 1; mode=block
+// X-Content-Type-Options: nosniff
+// Referrer-Policy: origin-when-cross-origin
+// Strict-Transport-Security: max-age=31536000; includeSubdomains
+// Request duration: 1.121889s
+#+END_SRC
+
+** DONE eth_getWork
+#+begin_src restclient
+POST https://bsc-dataseed.binance.org/
+Content-Type: application/json
+{
+    "id": "1337",
+    "jsonrpc": "2.0",
+    "method": "eth_getWork"
+}
+
+
+#+end_src
+
+#+RESULTS:
+#+BEGIN_SRC js
+{
+  "jsonrpc": "2.0",
+  "id": "1337",
+  "error": {
+    "code": -32601,
+    "message": "the method eth_getWork does not exist/is not available"
+  }
+}
+
+// POST https://bsc-dataseed.binance.org/
+// HTTP/1.1 200 OK
+// Date: Tue, 13 Jul 2021 07:41:14 GMT
+// Content-Type: application/json
+// Content-Length: 121
+// Connection: close
+// Vary: Accept-Encoding
+// Vary: Origin
+// X-Frame-Options: SAMEORIGIN
+// X-Xss-Protection: 1; mode=block
+// X-Content-Type-Options: nosniff
+// Referrer-Policy: origin-when-cross-origin
+// Strict-Transport-Security: max-age=31536000; includeSubdomains
+// Request duration: 1.154602s
+#+END_SRC
+
 ** TODO eth_submitWork
 ** TODO eth_submitHashrate
 ** TODO db_putString
@@ -415,6 +1238,44 @@ Content-Type: application/json
 ** TODO db_getHex
 ** TODO shh_post
 ** TODO shh_version
+#+begin_src restclient
+POST https://bsc-dataseed.binance.org/
+Content-Type: application/json
+{
+    "id": "1337",
+    "jsonrpc": "2.0",
+    "method": "shh_version",
+}
+
+#+end_src
+
+#+RESULTS:
+#+BEGIN_SRC js
+{
+  "jsonrpc": "2.0",
+  "id": null,
+  "error": {
+    "code": -32700,
+    "message": "parse error"
+  }
+}
+
+// POST https://bsc-dataseed.binance.org/
+// HTTP/1.1 200 OK
+// Date: Tue, 13 Jul 2021 08:02:40 GMT
+// Content-Type: application/json
+// Content-Length: 76
+// Connection: close
+// Vary: Accept-Encoding
+// Vary: Origin
+// X-Frame-Options: SAMEORIGIN
+// X-Xss-Protection: 1; mode=block
+// X-Content-Type-Options: nosniff
+// Referrer-Policy: origin-when-cross-origin
+// Strict-Transport-Security: max-age=31536000; includeSubdomains
+// Request duration: 1.340272s
+#+END_SRC
+
 ** TODO shh_newIdentity
 ** TODO shh_hasIdentity
 ** TODO shh_newGroup
@@ -422,5 +1283,14 @@ Content-Type: application/json
 ** TODO shh_newFilter
 ** TODO shh_uninstallFilter
 ** TODO shh_getFilterChanges
-** TODO shh_getMessages
-** TODO eth_newBlockFilter
+** DONE shh_getMessages
+#+begin_src restclient
+POST https://bsc-dataseed.binance.org/
+Content-Type: application/json
+{
+    "id": "1337",
+    "jsonrpc": "2.0",
+    "method": "shh_getMessages",
+    "params": ["0x7"]
+}
+#+end_src

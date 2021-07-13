@@ -39,7 +39,6 @@ defmodule EthereumRPC.Client.BaseClient do
         request("net_peerCount", [], opts)
       end
 
-
       @doc """
       Determines if this client is listening for new network connections
       iex> {"id":2,"jsonrpc":"2.0","method":"net_listening","params":[]}
@@ -113,6 +112,104 @@ defmodule EthereumRPC.Client.BaseClient do
       end
 
       @doc """
+      iex> {"id":14,"jsonrpc":"2.0","method":"eth_getBalance","params":["0x407d73d8a49eeb85d32cf465507dd71d507100c1","latest"]}
+      """
+      # @impl true
+      def eth_get_balance(address, block \\ "latest", opts \\ []) do
+        params = [address, block]
+
+        request("eth_getBalance", params, opts)
+      end
+
+      @doc """
+      iex>
+      {
+        "id": "1337",
+        "jsonrpc": "2.0",
+        "method": "eth_getStorageAt",
+        "params":["0x407d73d8a49eeb85d32cf465507dd71d507100c1","0x0","latest"]
+       }
+      """
+      # @impl true
+      def eth_get_storage_at(address, position, block \\ "latest", opts \\ []) do
+        params = [address, position, block]
+
+        request("eth_getStorageAt", params, opts)
+      end
+
+      @doc """
+      """
+      # @impl true
+      def eth_get_block_transaction_count_by_hash(hash, opts \\ []) do
+        params = [hash]
+
+        request("eth_getBlockTransactionCountByHash", params, opts)
+      end
+
+      @doc """
+      """
+      # @impl true
+      def eth_get_block_transaction_count_by_number(block \\ "latest", opts \\ []) do
+        params = [block]
+
+        request("eth_getBlockTransactionCountByNumber", params, opts)
+      end
+
+      @doc ""
+      def eth_send_raw_transaction(data, opts \\ []) do
+        params = [data]
+
+        request("eth_sendRawTransaction", params, opts)
+      end
+
+      @doc """
+      """
+      def eth_get_uncle_count_by_block_number(block \\ "latest", opts \\ []) do
+        params = [block]
+
+        request("eth_getUncleCountByBlockNumber", params, opts)
+      end
+
+      @doc ""
+      def eth_get_code(address, block \\ "latest", opts \\ []) do
+        params = [address, block]
+
+        request("eth_getCode", params, opts)
+      end
+
+      @doc ""
+      def eth_sign(address, message, opts \\ []) do
+        params = [address, message]
+
+        request("eth_sign", params, opts)
+      end
+
+      @doc ""
+      def eth_send_transaction(transaction, opts \\ []) do
+        params = [transaction]
+
+        request("eth_sendTransaction", params, opts)
+      end
+
+      @doc """
+      """
+      # @impl true
+      def eth_get_transaction_count(address, block \\ "latest", opts \\ []) do
+        params = [address, block]
+
+        request("eth_getTransactionCount", params, opts)
+      end
+
+      @doc """
+      """
+      @impl true
+      def eth_get_uncle_count_by_block_hash(hash, opts \\ []) do
+        params = [hash]
+
+        request("eth_getUncleCountByBlockHash", params, opts)
+      end
+
+      @doc """
       Returns the coinbase address for this client
       iex> {"id":10,"jsonrpc":"2.0","method":"eth_coinbase","params":[]}
       """
@@ -141,9 +238,268 @@ defmodule EthereumRPC.Client.BaseClient do
       Creates a filter to listen for new pending transactions that can be used with eth_getFilterChanges
       iex> {"id":3,"jsonrpc":"2.0","method":"eth_newPendingTransactionFilter","params":[]}
       """
-      @impl true
+      # @impl true
       def eth_new_pending_transaction_filter(opts \\ []) do
         request("eth_newPendingTransactionFilter", [], opts)
+      end
+
+      # @impl true
+      def eth_call(transaction, block \\ "latest", opts \\ []) do
+        params = [transaction, block]
+
+        request("eth_call", params, opts)
+      end
+
+      # @impl true
+      def eth_estimate_gas(transaction, opts \\ []) do
+        params = [transaction]
+
+        request("eth_estimateGas", params, opts)
+      end
+
+      # @impl true
+      def eth_get_block_by_hash(hash, full, opts \\ []) do
+        params = [hash, full]
+
+        request("eth_getBlockByHash", params, opts)
+      end
+
+      # @impl true
+      def eth_get_block_by_number(number, full, opts \\ []) do
+        params = [number, full]
+
+        request("eth_getBlockByNumber", params, opts)
+      end
+
+      # @impl true
+      def eth_get_transaction_by_hash(hash, opts \\ []) do
+        params = [hash]
+
+        request("eth_getTransactionByHash", params, opts)
+      end
+
+      # @impl true
+      def eth_get_transaction_by_block_hash_and_index(hash, index, opts \\ []) do
+        params = [hash, index]
+
+        request("eth_getTransactionByBlockHashAndIndex", params, opts)
+      end
+
+      # @impl true
+      def eth_get_transaction_by_block_number_and_index(block, index, opts \\ []) do
+        params = [block, index]
+
+        request("eth_getTransactionByBlockNumberAndIndex", params, opts)
+      end
+
+      # @impl true
+      def eth_get_transaction_receipt(hash, opts \\ []) do
+        params = [hash]
+
+        request("eth_getTransactionReceipt", params, opts)
+      end
+
+      @impl true
+      def eth_get_uncle_by_block_hash_and_index(hash, index, opts \\ []) do
+        params = [hash, index]
+
+        request("eth_getUncleByBlockHashAndIndex", params, opts)
+      end
+
+      @impl true
+      def eth_get_uncle_by_block_number_and_index(block, index, opts \\ []) do
+        params = [block, index]
+
+        request("eth_getUncleByBlockNumberAndIndex", params, opts)
+      end
+
+      # @impl true
+      # def eth_get_compilers(opts \\ []) do
+      #   request("eth_getCompilers", [], opts)
+      # end
+
+      @impl true
+      def eth_compile_lll(data, opts \\ []) do
+        params = [data]
+
+        request("eth_compileLLL", params, opts)
+      end
+
+      @impl true
+      def eth_compile_solidity(data, opts \\ []) do
+        params = [data]
+
+        request("eth_compileSolidity", params, opts)
+      end
+
+      @impl true
+      def eth_compile_serpent(data, opts \\ []) do
+        params = [data]
+
+        request("eth_compileSerpent", params, opts)
+      end
+
+      @impl true
+      def eth_new_filter(data, opts \\ []) do
+        params = [data]
+
+        request("eth_newFilter", params, opts)
+      end
+
+      # @impl true
+      # def eth_new_block_filter(opts \\ []) do
+      #   request("eth_newBlockFilter", [], opts)
+      # end
+
+      # @impl true
+      # def eth_new_pending_transaction_filter(opts \\ []) do
+      #   request("eth_newPendingTransactionFilter", [], opts)
+      # end
+
+      # @impl true
+      # def eth_uninstall_filter(id, opts \\ []) do
+      #   params = [id]
+
+      #   request("eth_uninstallFilter", params, opts)
+      # end
+
+      @impl true
+      def eth_get_filter_changes(id, opts \\ []) do
+        params = [id]
+
+        request("eth_getFilterChanges", params, opts)
+      end
+
+      @impl true
+      def eth_get_filter_logs(id, opts \\ []) do
+        params = [id]
+
+        request("eth_getFilterLogs", params, opts)
+      end
+
+      @impl true
+      def eth_get_logs(filter, opts \\ []) do
+        params = [filter]
+
+        request("eth_getLogs", params, opts)
+      end
+
+      @impl true
+      def eth_get_work(opts \\ []) do
+        request("eth_getWork", [], opts)
+      end
+
+      @impl true
+      def eth_get_proof(address, storage_keys, block \\ "latest", opts \\ []) do
+        params = [address, storage_keys, block]
+
+        request("eth_getProof", params, opts)
+      end
+
+      # @impl true
+      # def eth_submit_work(nonce, header, digest, opts \\ []) do
+      #   params = [nonce, header, digest]
+
+      #   request("eth_submitWork", params, opts)
+      # end
+
+      # @impl true
+      # def eth_submit_hashrate(hashrate, id, opts \\ []) do
+      #   params = [hashrate, id]
+
+      #   request("eth_submitHashrate", params, opts)
+      # end
+
+      # @impl true
+      # def db_put_string(db, key, value, opts \\ []) do
+      #   params = [db, key, value]
+
+      #   request("db_putString", params, opts)
+      # end
+
+      # @impl true
+      # def db_get_string(db, key, opts \\ []) do
+      #   params = [db, key]
+
+      #   request("db_getString", params, opts)
+      # end
+
+      # @impl true
+      # def db_put_hex(db, key, data, opts \\ []) do
+      #   params = [db, key, data]
+
+      #   request("db_putHex", params, opts)
+      # end
+
+      # @impl true
+      # def db_get_hex(db, key, opts \\ []) do
+      #   params = [db, key]
+
+      #   request("db_getHex", params, opts)
+      # end
+
+      # @impl true
+      # def shh_post(whisper, opts \\ []) do
+      #   params = [whisper]
+
+      #   request("shh_post", params, opts)
+      # end
+
+      # @impl true
+      # def shh_version(opts \\ []) do
+      #   request("shh_version", [], opts)
+      # end
+
+      # @impl true
+      # def shh_new_identity(opts \\ []) do
+      #   request("shh_newIdentity", [], opts)
+      # end
+
+      # @impl true
+      # def shh_has_identity(address, opts \\ []) do
+      #   params = [address]
+
+      #   request("shh_hasIdentity", params, opts)
+      # end
+
+      # @impl true
+      # def shh_new_group(opts \\ []) do
+      #   request("shh_newGroup", [], opts)
+      # end
+
+      # @impl true
+      # def shh_add_to_group(address, opts \\ []) do
+      #   params = [address]
+
+      #   request("shh_addToGroup", params, opts)
+      # end
+
+      # @impl true
+      # def shh_new_filter(filter_options, opts \\ []) do
+      #   params = [filter_options]
+
+      #   request("shh_newFilter", params, opts)
+      # end
+
+      # @impl true
+      # def shh_uninstall_filter(filter_id, opts \\ []) do
+      #   params = [filter_id]
+
+      #   request("shh_uninstallFilter", params, opts)
+      # end
+
+      # @impl true
+      # def shh_get_filter_changes(filter_id, opts \\ []) do
+      #   params = [filter_id]
+
+      #   request("shh_getFilterChanges", params, opts)
+      # end
+
+      @impl true
+      def shh_get_messages(filter_id, opts \\ []) do
+        params = [filter_id]
+
+        "shh_getMessages" |> request(params, opts)
       end
 
       ### Request ###
@@ -151,7 +507,6 @@ defmodule EthereumRPC.Client.BaseClient do
       defp post_request(payload, opts) do
         {:error, :not_implemented}
       end
-
 
       # The function that a behavior like HTTP or IPC needs to implement.
       defoverridable post_request: 2
